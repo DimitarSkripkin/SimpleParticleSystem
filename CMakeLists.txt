@@ -35,7 +35,7 @@ endif()
 target_include_directories(${PROJECT_NAME} PUBLIC
     "${OPENGL_INCLUDE_DIR}"
     # "libs"
-    "libs/SingleHeaders"
+    "libs/HeadersOnly"
     "src"
 )
 
