@@ -23,6 +23,9 @@ add_executable(${PROJECT_NAME}
     "src/main.cpp"
     "src/Application.cpp"
     "src/EngineCore/Rendering/OpenGLWrapper/DebugGL.cpp"
+    "src/EngineCore/Rendering/OpenGLWrapper/Shader.cpp"
+    "src/EngineCore/Rendering/OpenGLWrapper/ShaderProgram.cpp"
+    "src/EngineCore/Utils/FileUtils.cpp"
 )
 
 # OpenGL
