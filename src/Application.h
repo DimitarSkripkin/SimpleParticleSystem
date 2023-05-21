@@ -22,6 +22,7 @@ private:
     void *mainWindowHandler;
 
     float lastDeltaTime = 0.0f;
+    float totalWorkingTime = 0.0f;
     bool shouldQuit = false;
 
     Ref<Texture> particleTexture;
