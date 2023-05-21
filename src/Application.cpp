@@ -37,6 +37,10 @@ void Application::Init(GLFWwindow *window, void *mainWindowHandler, const char *
     ImGui_ImplOpenGL3_Init(glsl_version);
 
     this->window = window;
+
+    RawImage rawImage("assets/textures/fire_01.png");
+    particleTexture = CreateRef<Texture>();
+    particleTexture->UploadToGPU(rawImage);
 }
 
 void Application::Update(float deltaTime) {
@@ -59,8 +63,14 @@ void Application::Draw() {
     ImGui::NewFrame();
 
     ImGui::Begin("Color");
+
     ImGuiColorEditFlags flags = ImGuiColorEditFlags_None;
     ImGui::ColorEdit3("Background Color", glm::value_ptr(color), flags);
+
+    intptr_t textureId = particleTexture->GetId();
+    auto thumbnailSize = 256.0f;
+    ImGui::Image(reinterpret_cast<ImTextureID>(textureId), { thumbnailSize, thumbnailSize });
+
     ImGui::End();
 
     ImGui::Render();

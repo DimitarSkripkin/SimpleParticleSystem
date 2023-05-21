@@ -1,5 +1,7 @@
 #pragma once
 
+#include "EngineCore/Rendering/OpenGLWrapper/Texture.h"
+
 struct GLFWwindow;
 
 class Application {
@@ -21,4 +23,6 @@ private:
 
     float lastDeltaTime = 0.0f;
     bool shouldQuit = false;
+
+    Ref<Texture> particleTexture;
 };

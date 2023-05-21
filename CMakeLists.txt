@@ -28,6 +28,8 @@ add_executable(${PROJECT_NAME}
     "src/EngineCore/Rendering/OpenGLWrapper/DebugGL.cpp"
     "src/EngineCore/Rendering/OpenGLWrapper/Shader.cpp"
     "src/EngineCore/Rendering/OpenGLWrapper/ShaderProgram.cpp"
+    "src/EngineCore/Rendering/OpenGLWrapper/Texture.cpp"
+
     "src/EngineCore/Utils/FileUtils.cpp"
 )
 
