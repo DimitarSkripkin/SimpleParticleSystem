@@ -22,6 +22,7 @@ add_subdirectory("libs/glfw")
 add_executable(${PROJECT_NAME}
     "src/main.cpp"
     "src/Application.cpp"
+    "src/EngineCore/Rendering/OpenGLWrapper/DebugGL.cpp"
 )
 
 # OpenGL

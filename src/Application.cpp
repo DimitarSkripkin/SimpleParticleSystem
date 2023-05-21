@@ -8,9 +8,12 @@
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
 
+#include "EngineCore/Rendering/OpenGLWrapper/DebugGL.h"
+
 // called on startup
 void Application::Init(GLFWwindow *window, void *mainWindowHandler, const char *glsl_version) {
     this->mainWindowHandler = mainWindowHandler;
+    EnableOpenGLDebugging();
 
     glClearDepth( 1.0f );
     glEnable(GL_DEPTH_TEST);
@@ -41,6 +44,7 @@ void Application::Update(float deltaTime) {
 }
 
 void Application::Draw() {
+    CheckForGLErrors();
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     static glm::vec3 color(0.45f);
