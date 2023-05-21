@@ -8,6 +8,7 @@
 #include <imgui_impl_glfw.h>
 #include <imgui_impl_opengl3.h>
 
+#include "EngineCore/Core/AssetManager.h"
 #include "EngineCore/Rendering/OpenGLWrapper/DebugGL.h"
 
 // called on startup
@@ -38,9 +39,8 @@ void Application::Init(GLFWwindow *window, void *mainWindowHandler, const char *
 
     this->window = window;
 
-    RawImage rawImage("assets/textures/fire_01.png");
-    particleTexture = CreateRef<Texture>();
-    particleTexture->UploadToGPU(rawImage);
+    auto & assetManager = EngineCore::Core::AssetManager::Instance();
+    particleTexture = assetManager.LoadCachedImageFile("assets/textures/fire_01.png");
 }
 
 void Application::Update(float deltaTime) {

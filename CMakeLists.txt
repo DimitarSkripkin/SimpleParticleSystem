@@ -23,6 +23,8 @@ add_executable(${PROJECT_NAME}
     "src/main.cpp"
     "src/Application.cpp"
 
+    "src/EngineCore/Core/AssetManager.cpp"
+
     "src/EngineCore/FileLoaders/RawImage.cpp"
 
     "src/EngineCore/Rendering/OpenGLWrapper/DebugGL.cpp"
