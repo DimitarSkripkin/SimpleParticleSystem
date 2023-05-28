@@ -1,6 +1,7 @@
 #version 330 core
 
-uniform sampler2D spriteSampler;
+uniform sampler2D albedoMap;
+uniform bool hasAlbedoMap;
 
 in VS_OUT {
     vec4 color;
@@ -10,11 +11,15 @@ in VS_OUT {
 out vec4 fragColor;
 
 void main() {
-    vec4 textureColor = texture(spriteSampler, fs_in.uv);
-    fragColor = fs_in.color * textureColor;
+    if (hasAlbedoMap) {
+        vec4 textureColor = texture(albedoMap, fs_in.uv);
+        fragColor = fs_in.color * textureColor;
 
-    float textureColorLen = length(vec3(textureColor));
-    fragColor.a = textureColorLen;
+        float textureColorLen = length(vec3(textureColor));
+        fragColor.a = textureColorLen;
+    } else {
+        fragColor = fs_in.color;
+    }
 
     float cutoff = 0.1;
     if (fragColor.a < cutoff) discard;

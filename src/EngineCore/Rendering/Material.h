@@ -36,6 +36,12 @@ public:
     }
 
     void UpdateTexture(Texture * texture) {
+        if (!texture) {
+            shaderProgram.SetInt(hasAlbedoMapId, 0);
+            return;
+        }
+
+        shaderProgram.SetInt(hasAlbedoMapId, 1);
         texture->Bind();
     }
 
@@ -53,6 +59,7 @@ private:
     GLint projectionMatrixId;
     GLint modelViewMatrixId;
     GLint albedoMapId;
+    GLint hasAlbedoMapId;
 
     void Init() {
         shaderProgram.Create();
@@ -72,6 +79,7 @@ private:
         modelViewMatrixId = shaderProgram.GetUniformLocation("modelView");
 
         albedoMapId = shaderProgram.GetUniformLocation("albedoMap");
+        hasAlbedoMapId = shaderProgram.GetUniformLocation("hasAlbedoMap");
 
         shaderProgram.BindFragDataLocation("fragColor");
     }

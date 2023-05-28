@@ -1,6 +1,7 @@
 #pragma once
 
 #include "EngineCore/Rendering/OpenGLWrapper/Texture.h"
+#include "EngineCore/Rendering/BatchRenderer.h"
 
 struct GLFWwindow;
 
@@ -26,4 +27,7 @@ private:
     bool shouldQuit = false;
 
     Ref<Texture> particleTexture;
+
+    BatchRecorder batchRecorder;
+    BatchRenderer batchRenderer;
 };
