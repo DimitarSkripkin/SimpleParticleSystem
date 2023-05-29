@@ -38,6 +38,7 @@ add_executable(${PROJECT_NAME}
     "src/EngineCore/Rendering/BatchRenderer.cpp"
 
     "src/EngineCore/Utils/FileUtils.cpp"
+    "src/EngineCore/Utils/Math.cpp"
 )
 
 # OpenGL
