@@ -59,10 +59,22 @@ void Application::Init(GLFWwindow *window, void *mainWindowHandler, const char *
 
     int displayWidth, displayHeight;
     glfwGetFramebufferSize(window, &displayWidth, &displayHeight);
+
     auto orthographicMatrix = glm::ortho(0.0f, (float)displayWidth, 0.0f, (float)displayHeight);
     spriteMaterial->UpdateProjection(orthographicMatrix);
     spriteMaterial->UpdateModelView(glm::mat4(1.0f));
+
     spriteMaterial->Unbind();
+
+    auto emitter = particleSystem.GetEmitter();
+    emitter->particleProps.lifeTime = 5.0f;
+    emitter->particleProps.initialPosition = glm::vec3(displayWidth / 2.0f, 250.0f, 0.0f);
+    emitter->particleProps.initialVelocity = glm::vec3(50.0f, 50.0f, 0.0f);
+    emitter->particleProps.initialSize = 10.0f;
+    emitter->particleProps.endSize = 50.0f;
+    emitter->particleProps.initialColor = glm::vec4(1.0f);
+    emitter->particleProps.endColor = glm::vec4(0.0f);
+    emitter->particlesPerSecond = 100.0f;
 }
 
 void Application::Update(float deltaTime) {
@@ -75,12 +87,12 @@ void Application::Update(float deltaTime) {
     modelViewMatrix = glm::translate(modelViewMatrix, glm::vec3(movementSpeed * totalWorkingTime, movementSpeed * totalWorkingTime, 0.0f));
 
     batchRecorder.Clear();
-    batchRecorder.Add(Sprite(0, 0, particleTexture->GetWidth(), particleTexture->GetHeight(), particleTexture.get()), modelViewMatrix);
-    batchRecorder.Add(DrawQuad { { 750.f, 150.0f }, { 1.0f, 1.0f, 1.0f, 1.0f } }, modelViewMatrix);
+    // batchRecorder.Add(Sprite(0, 0, particleTexture->GetWidth(), particleTexture->GetHeight(), particleTexture.get()), modelViewMatrix);
+    particleSystem.Update(deltaTime);
+    particleSystem.AppendParticleData(batchRecorder);
     batchRecorder.FinishRecording();
 
     totalWorkingTime += deltaTime;
-
 }
 
 void Application::Draw() {

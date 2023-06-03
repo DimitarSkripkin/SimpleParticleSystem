@@ -1,5 +1,6 @@
 #pragma once
 
+#include "EngineCore/Systems/ParticleSystem.h"
 #include "EngineCore/Rendering/OpenGLWrapper/Texture.h"
 #include "EngineCore/Rendering/BatchRenderer.h"
 
@@ -30,4 +31,6 @@ private:
 
     BatchRecorder batchRecorder;
     BatchRenderer batchRenderer;
+
+    EngineCore::Systems::ParticleSystem particleSystem;
 };

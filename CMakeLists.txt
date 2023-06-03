@@ -37,6 +37,8 @@ add_executable(${PROJECT_NAME}
     "src/EngineCore/Rendering/BatchRecorder.cpp"
     "src/EngineCore/Rendering/BatchRenderer.cpp"
 
+    "src/EngineCore/Systems/ParticleSystem.cpp"
+
     "src/EngineCore/Utils/FileUtils.cpp"
     "src/EngineCore/Utils/Math.cpp"
 )
