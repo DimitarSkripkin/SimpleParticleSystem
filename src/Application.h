@@ -33,4 +33,6 @@ private:
     BatchRenderer batchRenderer;
 
     EngineCore::Systems::ParticleSystem particleSystem;
+
+    void DrawUI();
 };

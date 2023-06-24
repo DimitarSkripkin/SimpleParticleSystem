@@ -99,15 +99,16 @@ void Application::Draw() {
     CheckForGLErrors();
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    static glm::vec3 color(0.45f);
-    glClearColor(color.x, color.y, color.z, 1.00f);
-
     spriteMaterial->Bind();
     batchRenderer.Draw(batchRecorder, *spriteMaterial);
     spriteMaterial->Unbind();
 
-    // TEMP will be moved
-    ImGuiIO &io = ImGui::GetIO();
+    DrawUI();
+}
+
+void Application::DrawUI() {
+    static glm::vec3 color(0.45f);
+    glClearColor(color.x, color.y, color.z, 1.00f);
 
     // Start the Dear ImGui frame
     ImGui_ImplOpenGL3_NewFrame();
