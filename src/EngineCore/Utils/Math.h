@@ -80,6 +80,15 @@ namespace EngineCore::Math {
             }
         }
 
+        glm::vec3 RandomInDirection(const glm::vec3 &normal, float spread = 0.2f) {
+            while (true) {
+                auto inUnitSphere = RandomInUnitSphere();
+                if (glm::dot(inUnitSphere, normal) > (1 - spread)) {
+                    return inUnitSphere;
+                }
+            }
+        }
+
     private:
         std::default_random_engine generator;
         std::mt19937_64 generator64;

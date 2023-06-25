@@ -6,6 +6,12 @@
 #include "EngineCore/Utils/Math.h"
 
 namespace EngineCore::Systems {
+    enum class SpawnShape {
+        SPHERE,
+        HEMISPHERE,
+        DIRECTION
+    };
+
     struct EmitParticleProps {
         glm::vec3 initialPosition;
         glm::vec3 initialVelocity;
@@ -27,9 +33,14 @@ namespace EngineCore::Systems {
 
         EmitParticleProps particleProps;
 
+        SpawnShape spawnShape = SpawnShape::SPHERE;
+        glm::vec3 directionNormal = glm::vec3(0.0f, 1.0f, 0.0f);
+        float directionSpread = 0.2f;
+
         // glm::vec3 velocityVariation;
         // float sizeVariation;
         float particlesPerSecond = 1.0f;
+        float particleLifetimeVariation = 1.0f;
 
         void Update(float deltaTime);
 

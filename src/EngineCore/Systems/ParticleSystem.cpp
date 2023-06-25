@@ -11,7 +11,21 @@ void Emitter::Update(float deltaTime) {
     cooldown -= deltaTime;
     if (cooldown <= 0.0f) {
         auto newParticleProps = particleProps;
-        newParticleProps.initialVelocity *= rnd.RandomInUnitSphere();
+        newParticleProps.lifeTime += rnd.Float(0.0f, particleLifetimeVariation);
+        switch (spawnShape)
+        {
+            case SpawnShape::HEMISPHERE:
+                newParticleProps.initialVelocity *= rnd.RandomInHemisphere(directionNormal);
+                break;
+            case SpawnShape::DIRECTION:
+                newParticleProps.initialVelocity *= rnd.RandomInDirection(directionNormal, directionSpread);
+                break;
+
+            default:
+                newParticleProps.initialVelocity *= rnd.RandomInUnitSphere();
+                break;
+        }
+
         particleSystem->EmitParticle(newParticleProps);
         cooldown += 1.0f / particlesPerSecond;
     }

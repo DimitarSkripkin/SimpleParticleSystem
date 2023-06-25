@@ -73,6 +73,8 @@ void Application::Init(GLFWwindow *window, void *mainWindowHandler, const char *
     emitter->particleProps.initialColor = glm::vec4(1.0f);
     emitter->particleProps.endColor = glm::vec4(0.0f);
     emitter->particlesPerSecond = 100.0f;
+    emitter->spawnShape = EngineCore::Systems::SpawnShape::DIRECTION;
+    emitter->directionSpread = 0.2f;
 
     auto particleSprite = CreateRef<Sprite>(particleTexture.get());
     emitter->particleProps.sprite = particleSprite;
@@ -108,7 +110,7 @@ void Application::Draw() {
 }
 
 void Application::DrawUI() {
-    static glm::vec3 color(0.45f);
+    static glm::vec3 color(0.7f);
     glClearColor(color.x, color.y, color.z, 1.00f);
 
     // Start the Dear ImGui frame
