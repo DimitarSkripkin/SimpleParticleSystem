@@ -48,7 +48,12 @@ void ParticleSystem::AppendParticleData(BatchRecorder &batchRecorder) {
         float interpolationValue = 1 - (particle.lifeRemaining / particle.lifeTime);
         float size = glm::lerp(particle.initialSize, particle.endSize, interpolationValue);
         auto color = glm::lerp(particle.initialColor, particle.endColor, interpolationValue);
-        batchRecorder.Add(DrawQuad { { size, size }, color }, particle.position, particle.rotation, glm::vec2(1.0f));
+        if (particle.sprite) {
+            particle.sprite->color = color;
+            batchRecorder.Add(*particle.sprite, particle.position, particle.rotation, size / glm::vec2(particle.sprite->width, particle.sprite->height));
+        } else {
+            batchRecorder.Add(DrawQuad { { size, size }, color }, particle.position, particle.rotation, glm::vec2(1.0f));
+        }
     }
 }
 
@@ -63,6 +68,7 @@ void ParticleSystem::EmitParticle(EmitParticleProps particleProps) {
     particle.endSize = particleProps.endSize;
     particle.lifeTime = particleProps.lifeTime;
     particle.lifeRemaining = particleProps.lifeTime;
+    particle.sprite = particleProps.sprite;
 
     particlePoolIndex = (++particlePoolIndex) % particlePool.size();
 }

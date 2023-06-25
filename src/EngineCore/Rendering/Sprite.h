@@ -40,6 +40,22 @@ public:
         // color = generateColor(++colorIndex);
     }
 
+    Sprite(Texture * texture)
+        : x(0),
+        y(0),
+        width(texture->GetWidth()),
+        height(texture->GetHeight()),
+        texture(texture),
+        drawOffset(0.0f),
+        uvMin(0.0f),
+        uvMax(1.0f),
+        color(1.0f)
+    {
+        // DEBUG
+        // static int colorIndex = 15;
+        // color = generateColor(++colorIndex);
+    }
+
     int16_t x;
     int16_t y;
     int16_t width;

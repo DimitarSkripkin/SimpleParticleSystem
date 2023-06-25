@@ -14,6 +14,7 @@ namespace EngineCore::Systems {
         float initialSize = 0.0f;
         float endSize = 1.0f;
         float lifeTime = 1.0f;
+        Ref<Sprite> sprite;
     };
 
     class ParticleSystem;
@@ -60,6 +61,7 @@ namespace EngineCore::Systems {
             float endSize = 1.0f;
             float lifeTime = 5.0f;
             float lifeRemaining = 0.0f;
+            Ref<Sprite> sprite;
         };
 
         std::vector<Ref<Emitter>> emitters;

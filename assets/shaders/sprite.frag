@@ -15,7 +15,7 @@ void main() {
         vec4 textureColor = texture(albedoMap, fs_in.uv);
         fragColor = fs_in.color * textureColor;
 
-        float textureColorLen = length(vec3(textureColor));
+        float textureColorLen = length(vec3(fragColor));
         fragColor.a = textureColorLen;
     } else {
         fragColor = fs_in.color;

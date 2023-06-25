@@ -51,7 +51,8 @@ void Application::Init(GLFWwindow *window, void *mainWindowHandler, const char *
     this->window = window;
 
     auto & assetManager = EngineCore::Core::AssetManager::Instance();
-    particleTexture = assetManager.LoadCachedImageFile("assets/textures/fire_01.png");
+    // particleTexture = assetManager.LoadCachedImageFile("assets/textures/fire_01.png");
+    particleTexture = assetManager.LoadCachedImageFile("assets/textures/smoke_01.png");
 
     spriteMaterial = CreateRef<SpriteMaterial>();
     spriteMaterial->Bind();
@@ -70,11 +71,14 @@ void Application::Init(GLFWwindow *window, void *mainWindowHandler, const char *
     emitter->particleProps.lifeTime = 5.0f;
     emitter->particleProps.initialPosition = glm::vec3(displayWidth / 2.0f, 250.0f, 0.0f);
     emitter->particleProps.initialVelocity = glm::vec3(50.0f, 50.0f, 0.0f);
-    emitter->particleProps.initialSize = 10.0f;
-    emitter->particleProps.endSize = 50.0f;
+    emitter->particleProps.initialSize = 50.0f;
+    emitter->particleProps.endSize = 100.0f;
     emitter->particleProps.initialColor = glm::vec4(1.0f);
     emitter->particleProps.endColor = glm::vec4(0.0f);
     emitter->particlesPerSecond = 100.0f;
+
+    auto particleSprite = CreateRef<Sprite>(particleTexture.get());
+    emitter->particleProps.sprite = particleSprite;
 }
 
 void Application::Update(float deltaTime) {
