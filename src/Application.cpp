@@ -15,12 +15,9 @@
 #include <imgui_impl_opengl3.h>
 
 #include "EngineCore/Core/AssetManager.h"
-#include "EngineCore/Rendering/Material.h"
 #include "EngineCore/Rendering/OpenGLWrapper/DebugGL.h"
 #include "EngineCore/Rendering/OpenGLWrapper/BufferGPU.h"
 #include "EngineCore/Rendering/OpenGLWrapper/VAO.h"
-
-static Ref<SpriteMaterial> spriteMaterial;
 
 // called on startup
 void Application::Init(GLFWwindow *window, void *mainWindowHandler, const char *glsl_version) {

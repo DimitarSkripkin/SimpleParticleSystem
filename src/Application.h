@@ -27,6 +27,7 @@ private:
     float totalWorkingTime = 0.0f;
     bool shouldQuit = false;
 
+    Ref<SpriteMaterial> spriteMaterial;
     Ref<Texture> particleTexture;
 
     BatchRecorder batchRecorder;
